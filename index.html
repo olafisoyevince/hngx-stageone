@@ -12,7 +12,10 @@
   </head>
   <body onload="updateUTCTime()">
     <div class="main_container">
-      <h3 data-testid="slackUserName">seun_dev</h3>
+      <div class="align">
+        <label>Slack Username:</label>
+        <h3 data-testid="slackUserName">seun_dev</h3>
+      </div>
 
       <div class="img-wrapper">
         <img
@@ -22,10 +25,25 @@
         />
       </div>
 
-      <h3 class="day_of_week" data-testid="currentDayOfTheWeek"></h3>
-      <h3 class="current_utc_time" data-testid="currentUTCTime"></h3>
-      <h3 data-testid="myTrack">Frontend</h3>
-      <a href="https://github.com/olafisoyevince/hngx-stageone">Github</a>
+      <div class="align">
+        <label>Day of the week:</label>
+        <h3 data-testid="currentDayOfTheWeek"></h3>
+      </div>
+
+      <div class="align">
+        <label>Current UTC time:</label>
+        <h3 data-testid="currentUTCTime"></h3>
+      </div>
+
+      <div class="align">
+        <label>Track: </label>
+        <h3 data-testid="myTrack">Frontend</h3>
+      </div>
+      <a
+        data-testid="“githubURL”"
+        href="https://github.com/olafisoyevince/hngx-stageone"
+        >Github</a
+      >
     </div>
 
     <script>
@@ -42,7 +60,7 @@
       let dayOfWeek = d.getDay();
 
       const dayOfWeekElement = document.querySelector(
-        '.day_of_week[data-testid="currentDayOfTheWeek"]'
+        '[data-testid="currentDayOfTheWeek"]'
       );
 
       dayOfWeekElement.textContent = dayNames[dayOfWeek];
@@ -52,27 +70,26 @@
         let hours = today.getHours();
         let minutes = today.getMinutes();
         let seconds = today.getSeconds();
-        // const milliseconds = today.getMilliseconds();
+        let milliseconds = today.getMilliseconds();
 
         hours = checkTime(hours);
         minutes = checkTime(minutes);
         seconds = checkTime(seconds);
 
-        const currentUTCTime = hours + ":" + minutes + ":" + seconds;
+        const currentUTCTime =
+          hours + ":" + minutes + ":" + seconds + "." + milliseconds;
 
-        const time = document.querySelector(
-          '.current_utc_time[data-testid="currentUTCTime"]'
-        );
+        const time = document.querySelector('[data-testid="currentUTCTime"]');
 
         time.innerHTML = currentUTCTime;
 
-        setInterval(updateUTCTime, 100);
+        // setInterval(updateUTCTime, 100);
       }
 
       function checkTime(i) {
         if (i < 10) {
           i = "0" + i;
-        } // add zero in front of numbers < 10
+        }
         return i;
       }
     </script>

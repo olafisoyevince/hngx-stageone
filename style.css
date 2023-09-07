@@ -18,6 +18,12 @@ body {
   gap: 20px;
 }
 
+.align {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
 .img-wrapper {
   height: 130px;
   width: 130px;
@@ -27,5 +33,5 @@ body {
   height: 100%;
   width: 100%;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 15px;
 }
