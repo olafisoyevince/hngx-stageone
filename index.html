@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stage One</title>
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,500,700,400,300,200,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body onload="updateUTCTime()">
+    <div class="main_container">
+      <h3 data-testid="slackUserName">seun_dev</h3>
+
+      <div class="img-wrapper">
+        <img
+          src="./seun_dev.jpg"
+          alt="seun_dev"
+          data-testid="slackDisplayImage"
+        />
+      </div>
+
+      <h3 class="day_of_week" data-testid="currentDayOfTheWeek"></h3>
+      <h3 class="current_utc_time" data-testid="currentUTCTime"></h3>
+      <h3 data-testid="myTrack">Frontend</h3>
+      <a href="https://github.com/olafisoyevince/hngx-stageone">Github</a>
+    </div>
+
+    <script>
+      const dayNames = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
+      const d = new Date();
+      let dayOfWeek = d.getDay();
+
+      const dayOfWeekElement = document.querySelector(
+        '.day_of_week[data-testid="currentDayOfTheWeek"]'
+      );
+
+      dayOfWeekElement.textContent = dayNames[dayOfWeek];
+
+      function updateUTCTime() {
+        const today = new Date();
+        let hours = today.getHours();
+        let minutes = today.getMinutes();
+        let seconds = today.getSeconds();
+        // const milliseconds = today.getMilliseconds();
+
+        hours = checkTime(hours);
+        minutes = checkTime(minutes);
+        seconds = checkTime(seconds);
+
+        const currentUTCTime = hours + ":" + minutes + ":" + seconds;
+
+        const time = document.querySelector(
+          '.current_utc_time[data-testid="currentUTCTime"]'
+        );
+
+        time.innerHTML = currentUTCTime;
+
+        setInterval(updateUTCTime, 100);
+      }
+
+      function checkTime(i) {
+        if (i < 10) {
+          i = "0" + i;
+        } // add zero in front of numbers < 10
+        return i;
+      }
+    </script>
+  </body>
+</html>
