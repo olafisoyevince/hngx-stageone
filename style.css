@@ -27,6 +27,8 @@ body {
 .img-wrapper {
   height: 130px;
   width: 130px;
+  margin-inline: auto;
+  margin-top: 5px;
 }
 
 .img-wrapper img {
